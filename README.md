@@ -66,7 +66,6 @@ my_layer.print_weights();
 # multiple layer model building and training
 ```c++
 
-
 #include <NN.h>
 
 
@@ -79,6 +78,7 @@ layer out_layer(hiden_layer_1.units,1,1);
 //now initialize each layer
 
 void setup(){
+   Serial.begin(19200); // start the serial port
 // layer.init(activation function)
 //this are the current activations supported:
 // 0 : linear
@@ -99,8 +99,8 @@ float y_train[4][1] = {{0},{0},{0},{1}};
 
 
  float loss = 0.0;
- Serial.begin(19200); // start the serial port
- for (int g=0;g<500;g++){ // run 500 iterations
+
+ for (int g=0;g<1000;g++){ // run 500 iterations
     loss = 0.0;
     for (int t=0;t<4;t++){
       //pass foward the network
@@ -124,9 +124,31 @@ float y_train[4][1] = {{0},{0},{0},{1}};
       Serial.print(" loss: "); // print the loss
       Serial.println(loss,5);
     }
-
+    //print new weights
+  input.print_weights();
+  hiden_layer_1.print_weights();
+  out_layer.print_weights();
+  //now view the network predictions
+   for (int t=0;t<4;t++){
+      input.foward(x_train[t]);
+      hiden_layer_1.foward(input.acts);
+      float * outs = out_layer.foward(hiden_layer_1.acts);
+      Serial.print(" inputs: "); // print the loss
+      Serial.print(x_train[t][0]);
+       Serial.print(" | ");
+      Serial.print(x_train[t][1]);
+      Serial.print(" out: ");
+      Serial.print(outs[0],5);
+      Serial.print(" expected: ");
+      Serial.println(y_train[t][0],2);
+   }
 }
 //this is the end of this tutorial
+
+void loop() {
+  // nothing here 
+
+}
 
 
 ```
