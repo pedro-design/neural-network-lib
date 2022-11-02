@@ -164,7 +164,7 @@ layer my_loaded_input(2,4,1);
 
 //now iterate over the neurons
 for (byte n=0;n<my_loaded_input.units;n++){
-my_loaded_input.set_wb(n,weights[n], biases[n])
+my_loaded_input.set_wb(n,weights[n], biases[n]);
 // set_wb(byte neuron ,float * weights,float bias) 
   
 };
