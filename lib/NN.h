@@ -137,11 +137,14 @@ class neural_network_api{
             Serial.print("neuron " );
             Serial.print(x);
             Serial.print(" weights: ");
+			Serial.print("{");
           for(int y=0;y<inputs;y++){
-               Serial.print(" ");
+              
                
                Serial.print(this -> cw1[x][y],10); // neural nets are flexible, is not required a lot of decimals
-          }
+			   Serial.print(",");	
+		 }
+		  Serial.print("}");
           Serial.print("  bias: ");
           Serial.print(this -> biases[x],10);
           Serial.println(" ");
