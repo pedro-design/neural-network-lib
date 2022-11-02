@@ -67,9 +67,9 @@ my_layer.print_weights();
 ```c++
 
 
-//this is the example of how it looks in the arduino
-//firts load the lib
 #include <NN.h>
+
+
 //then create the layers
 // the layer object has 3 requiremets to create layer(input_size,units,low_mem_mode)
 layer input(2,4,1);
@@ -94,8 +94,8 @@ input.print_weights();
 hiden_layer_1.print_weights();
 out_layer.print_weights();
 // the data for this example will be the AND problem
-int x_train[4][2] = {{0,0},{1,0},{0,1},{1,1}};
-int y_train[4][1] = {{0},{0},{0},{1}};
+float x_train[4][2] = {{0,0},{1,0},{0,1},{1,1}};
+float y_train[4][1] = {{0},{0},{0},{1}};
 
 
  float loss = 0.0;
@@ -105,8 +105,8 @@ int y_train[4][1] = {{0},{0},{0},{1}};
     for (int t=0;t<4;t++){
       //pass foward the network
       input.foward(x_train[t]);
-      hiden_layer_1.foward(c1_input_1.acts);
-      float * outs = out_layer.foward(c1_hiden_1.acts);
+      hiden_layer_1.foward(input.acts);
+      float * outs = out_layer.foward(hiden_layer_1.acts);
       
       //compute backpropagation
       //backprop_out computes the derivate of the output layer
@@ -127,5 +127,6 @@ int y_train[4][1] = {{0},{0},{0},{1}};
 
 }
 //this is the end of this tutorial
+
 
 ```
