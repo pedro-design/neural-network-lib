@@ -160,7 +160,10 @@ for that , first create a layer
 float biases[4] =  {0.5532683849 ,-0.5390377044 , 0.6322992324 , 1.6210779190 }; //AND example input trained layer
 float weights[4][2] = {{ 0.3335616350 -2.1301760673} ,{ 2.4739842414 ,-0.4713960170 },{ -1.4829830169 ,0.3521333932  },{ 0.2596107721, 1.6109024047 }};
 
+
 layer my_loaded_input(2,4,1);
+// remember to initialize the layer activation function
+my_loaded_input.init(3); // leaky_relu
 
 //now iterate over the neurons
 for (byte n=0;n<my_loaded_input.units;n++){
