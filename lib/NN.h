@@ -184,7 +184,7 @@ class neural_network_api{
     { 
       //  float x0 = exp(x);
         //float x1 = 1.0 / x0;
-        return (1 - (tanh(x)*tanh(x)))+0.1;
+        return (1 - (tanh(x)*tanh(x)))+0.01;
     }
     float leaky_relu_dev(float x){
        if (x<0){
