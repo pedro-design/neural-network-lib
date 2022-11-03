@@ -188,7 +188,7 @@ class neural_network_api{
     }
     float leaky_relu_dev(float x){
        if (x<0){
-        return x*0.3;
+        return 0.3;
        }else{
         return 1 ;
        }
