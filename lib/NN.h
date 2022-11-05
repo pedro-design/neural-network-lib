@@ -62,14 +62,22 @@ class neural_network_api{
         this -> biases[neuron] = bias;
         return 1;
      };
+	 
+
      void init(byte o){
       this ->actfn = o;
      
       for (byte x = 0; x< units;x++){
          biases[x] = randomfloat()*2; //randomfloat(0.0,1.0);
           for (int y = 0; y< inputs;y++){
-            cw1[x][y] =randomfloat()*2; 
-           
+			if ((actfn==3 ) or (actfn==4)){
+			
+            cw1[x][y] =  -(sqrt(6.0) / sqrt(inputs  + units )) + randomfloat() * ( -(sqrt(6.0) / sqrt(inputs  + units ))-(sqrt(6.0) / sqrt(inputs  + units )) )  ; 
+			}else{
+				float std = sqrt(2.0 / inputs);
+				cw1[x][y] =randomfloat()*std;
+				
+			}
           }
           
        } 
